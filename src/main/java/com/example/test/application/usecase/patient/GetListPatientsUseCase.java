@@ -1,4 +1,4 @@
-package com.example.test.application.usecase;
+package com.example.test.application.usecase.patient;
 
 import com.example.test.domain.model.Patient;
 import com.example.test.domain.repository.PatientRepository;

@@ -1,10 +1,10 @@
 package com.example.test.application.service;
 
-import com.example.test.application.usecase.GetListPatientsUseCase;
-import com.example.test.application.usecase.GetPatientUseCase;
-import com.example.test.application.usecase.SavePatientUseCase;
+import com.example.test.application.usecase.patient.GetListPatientsUseCase;
+import com.example.test.application.usecase.patient.GetPatientUseCase;
+import com.example.test.application.usecase.patient.SavePatientUseCase;
 import com.example.test.domain.model.Patient;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -32,4 +32,8 @@ public class PatientService {
     public Optional<Patient> getPatientById(String id){
         return getPatientUseCase.execute(id);
     }
-}
+
+
+    }
+
+

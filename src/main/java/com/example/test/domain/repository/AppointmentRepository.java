@@ -1,8 +1,6 @@
 package com.example.test.domain.repository;
 
 import com.example.test.domain.model.Appointment;
-import com.example.test.domain.model.Patient;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,5 +10,9 @@ public interface AppointmentRepository {
     List<Appointment> findAllAppointment();
     Optional<Appointment> findAppointmentById(Long id);
 
+    void deleteById(Long id);
+
+    Appointment update(Long id, Appointment updatedAppointment);
 }
+
 

@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Entity
 @Table
@@ -16,9 +18,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AppointmentEntity {
     @Id
+
     private Long id ;
+    private Date date ;
+    private String heure ;
     private String description;
     private String note ;
     private String state ;
+
+
 
 }

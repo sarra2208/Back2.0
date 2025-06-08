@@ -2,8 +2,12 @@ package com.example.test.infrastructure.persistence.repo;
 
 import com.example.test.domain.model.Patient;
 import com.example.test.domain.repository.PatientRepository;
+
+import com.example.test.infrastructure.persistence.entity.PatientEntity;
+
 import com.example.test.infrastructure.persistence.mapper.PatientMapper;
 import com.example.test.infrastructure.persistence.repo.jpa.PatientRepo;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +40,26 @@ public class PatientRepoImpl implements PatientRepository {
         return patientRepo.findById(id)
                 .map(PatientMapper::toDomain);
     }
+
+    @Override
+    public void deleteById(String id) {
+        patientRepo.deleteById(id);
+    }
+
+    @Override
+    public PatientEntity update(String id, Patient updatedPatient) {
+        return patientRepo.findById(id)
+                .map(existingPatient -> {
+                    existingPatient.setFirstname(updatedPatient.getFirstname());
+                    existingPatient.setLastname(updatedPatient.getLastname());
+                    existingPatient.setBirthdate(updatedPatient.getBirthdate());
+                    existingPatient.setGender(updatedPatient.getGender());
+                    existingPatient.setMobile(updatedPatient.getMobile());
+                    existingPatient.setEmail(updatedPatient.getEmail());
+                    return patientRepo.save(existingPatient);
+                })
+                .orElseThrow(() -> new RuntimeException(id) ); // Utilisation de l'exception personnalisée
+    }
 }
+
+

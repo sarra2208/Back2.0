@@ -1,9 +1,11 @@
 package com.example.test.infrastructure.persistence.mapper;
 
 import com.example.test.domain.model.Appointment;
-import com.example.test.domain.model.Patient;
+
+
 import com.example.test.infrastructure.persistence.entity.AppointmentEntity;
-import com.example.test.infrastructure.persistence.entity.PatientEntity;
+
+
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,6 +14,8 @@ public class AppointmentMapper {
         requireNonNull(appointmentEntity, "appointment entity should not be null!");
         return Appointment.builder()
                 .id(appointmentEntity.getId())
+                .date(appointmentEntity.getDate())
+                .heure(appointmentEntity.getHeure())
                 .description(appointmentEntity.getDescription())
                 .note(appointmentEntity.getNote())
                 .state(appointmentEntity.getState())
@@ -22,6 +26,8 @@ public class AppointmentMapper {
         requireNonNull(appointment, "appointment should not be null!");
         return AppointmentEntity.builder()
                 .id(appointment.getId())
+                .date(appointment.getDate())
+                .heure(appointment.getHeure())
                 .description(appointment.getDescription())
                 .note(appointment.getNote())
                 .state(appointment.getState())

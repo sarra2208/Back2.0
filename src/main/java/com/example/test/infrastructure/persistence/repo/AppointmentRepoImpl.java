@@ -24,7 +24,7 @@ public  class AppointmentRepoImpl implements AppointmentRepository {
 
     @Override
     public Appointment save(Appointment appointment) {
-        return AppointmentMapper.toDomain( appointmentRepo.save(AppointmentMapper.toEntity(appointment)));
+        return AppointmentMapper.toDomain(appointmentRepo.save(AppointmentMapper.toEntity(appointment)));
     }
 
     @Override
@@ -40,4 +40,30 @@ public  class AppointmentRepoImpl implements AppointmentRepository {
         return appointmentRepo.findById(id)
                 .map(AppointmentMapper::toDomain);
     }
-}
+
+    @Override
+    public void deleteById(Long id) {
+        appointmentRepo.deleteById(id);
+    }
+
+
+    public Optional<Appointment> findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Appointment update(Long id, Appointment updatedAppointment) {
+        return appointmentRepo.findById(id)
+                .map(existingAppointment -> {
+                    existingAppointment.setDate(updatedAppointment.getDate());
+                    existingAppointment.setHeure(updatedAppointment.getHeure());
+                    existingAppointment.setDescription(updatedAppointment.getDescription());
+                    existingAppointment.setNote(updatedAppointment.getNote());
+                    existingAppointment.setState(updatedAppointment.getState());
+                    return AppointmentMapper.toDomain(appointmentRepo.save(existingAppointment));
+                })
+                .orElseThrow(() -> new RuntimeException("Appointment with id " + id + " not found"));
+
+
+}}
+
