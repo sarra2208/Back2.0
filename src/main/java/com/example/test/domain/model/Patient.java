@@ -11,13 +11,14 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Patient {
-    private String id;
+    private Long id;
     private String firstname;
     private String lastname;
     private LocalDate birthdate;
     private String gender;
     private String mobile;
     private String email;
+
 
 
 

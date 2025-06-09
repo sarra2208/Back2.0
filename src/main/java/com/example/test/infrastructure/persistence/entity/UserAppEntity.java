@@ -6,22 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @Entity
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PatientEntity {
+public class UserAppEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstname;
-    private String lastname;
-    private LocalDate birthdate;
-    private String gender;
-    private String mobile;
-    private String email;
+    private String username;
+    private String password;
 }

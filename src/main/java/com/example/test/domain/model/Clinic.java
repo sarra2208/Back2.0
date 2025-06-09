@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Clinic {
 
 
-    private String id ;
+    private Long id ;
     private String name;
     private String address ;
     private String phone ;
