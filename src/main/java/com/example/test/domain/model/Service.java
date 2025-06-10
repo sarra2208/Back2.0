@@ -1,16 +1,15 @@
 package com.example.test.domain.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Service {
-    private String id;
-    private String ClinicId;
-
+    private Long id;
+    private Clinic Clinic;
     private String Name;
     private String Description;
 }

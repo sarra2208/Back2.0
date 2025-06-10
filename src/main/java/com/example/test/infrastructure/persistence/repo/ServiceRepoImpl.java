@@ -45,7 +45,7 @@ public class ServiceRepoImpl implements ServiceRepository {
     public ServiceEntity update(String id, Service updatedService) {
         return serviceRepo.findById(id)
                 .map(existingService -> {
-                    existingService.setClinicId(updatedService.getClinicId());
+                   // existingService.setClinic(updatedService.getClinic());
                     existingService.setName(updatedService.getName());
                     existingService.setDescription(updatedService.getDescription());
 

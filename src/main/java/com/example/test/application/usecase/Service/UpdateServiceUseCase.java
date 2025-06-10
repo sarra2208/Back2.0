@@ -13,7 +13,7 @@ public class UpdateServiceUseCase {
         return (Service) serviceRepository.findServiceById(id)
                 .map(existingService -> {
                     // Mettre à jour uniquement si l'ID existe
-                    existingService.setClinicId(updatedService.getClinicId());
+                   // existingService.setClinicId(updatedService.getClinicId());
                     existingService.setName(updatedService.getName());
                     existingService.setDescription(updatedService.getDescription());
 

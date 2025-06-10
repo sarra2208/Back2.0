@@ -5,6 +5,9 @@ import com.example.test.application.usecase.Service.DeleteServiceUseCase;
 import com.example.test.application.usecase.Service.UpdateServiceUseCase;
 
 import com.example.test.domain.model.Service;
+import com.example.test.domain.repository.ServiceRepository;
+import com.example.test.infrastructure.persistence.entity.ServiceEntity;
+import com.example.test.infrastructure.persistence.repo.jpa.ServiceRepo;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +19,20 @@ import java.util.Optional;
 @CrossOrigin
 public class ServiceController {
     private final ServiceService serviceService;
+    private final ServiceRepo serviceRepository;
     private final UpdateServiceUseCase updateServiceUseCase;
     private final DeleteServiceUseCase deleteServiceUseCase;
 
-    public ServiceController(ServiceService serviceService, UpdateServiceUseCase updateServiceUseCase, DeleteServiceUseCase deleteServiceUseCase) {
+    public ServiceController(ServiceService serviceService, ServiceRepo serviceRepository, UpdateServiceUseCase updateServiceUseCase, DeleteServiceUseCase deleteServiceUseCase) {
         this.serviceService = serviceService;
+        this.serviceRepository = serviceRepository;
         this.updateServiceUseCase = updateServiceUseCase;
         this.deleteServiceUseCase = deleteServiceUseCase;
     }
 
     @PostMapping("/addService")
-    public Service saveService(@RequestBody Service service){
-        return serviceService.saveService(service);
+    public void saveService(@RequestBody ServiceEntity service){
+         serviceRepository.save(service);
     }
 
     @GetMapping("/listServices")

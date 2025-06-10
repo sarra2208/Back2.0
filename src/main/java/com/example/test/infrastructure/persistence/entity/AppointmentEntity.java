@@ -1,8 +1,6 @@
 package com.example.test.infrastructure.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +23,13 @@ public class AppointmentEntity {
     private String description;
     private String note ;
     private String state ;
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private StaffEntity staff;
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private PatientEntity patient;
 
 
 }

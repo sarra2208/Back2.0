@@ -41,12 +41,3 @@ public class StatsController {
     }
 
 }
-@Setter
-@Getter
-@Builder
-class Stats {
-    public Long numberStuff;
-    public Long numberPatient;
-    public Long numberClinics;
-    public Long numberAppointments;
-}

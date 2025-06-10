@@ -1,14 +1,15 @@
 package com.example.test.infrastructure.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Data
 @Entity
 @Table
@@ -25,4 +26,10 @@ public class StaffEntity {
     private String telephone;
     private String   adresse;
     private LocalDate hireDate;
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private ServiceEntity service;
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<AppointmentEntity> appointments;
 }

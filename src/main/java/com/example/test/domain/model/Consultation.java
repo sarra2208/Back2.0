@@ -1,12 +1,11 @@
 package com.example.test.domain.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Builder
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class Consultation {
     @Setter
     private String id;

@@ -1,12 +1,13 @@
 package com.example.test.infrastructure.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -16,9 +17,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ServiceEntity {
     @Id
-    private String id;
-    private String ClinicId;
-
-    private String Name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "clinicId")
+    private ClinicEntity clinic;
+    private String name;
     private String Description;
+    @JsonIgnore
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    private List<StaffEntity> staffList;
 }

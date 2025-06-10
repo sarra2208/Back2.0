@@ -13,7 +13,7 @@ public class ServiceMapper {
         requireNonNull(serviceEntity, "service entity should not be null!");
         return Service.builder()
                 .id(serviceEntity.getId())
-                .ClinicId(serviceEntity.getClinicId())
+              //  .Clinic(serviceEntity.getClinic())
                 .Name(serviceEntity.getName())
                 .Description(serviceEntity.getDescription())
                 .build();
@@ -23,8 +23,7 @@ public class ServiceMapper {
         requireNonNull(service, "service model should not be null!");
         return ServiceEntity.builder()
                 .id(service.getId())
-                .ClinicId(service.getClinicId())
-                .Name(service.getName())
+                .name(service.getName())
                 .Description(service.getDescription())
 
 
