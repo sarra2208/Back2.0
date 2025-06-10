@@ -4,6 +4,8 @@ import com.example.test.application.service.StaffService;
 import com.example.test.application.usecase.Staff.DeleteStaffUseCase;
 import com.example.test.application.usecase.Staff.UpdateStaffUseCase;
 import com.example.test.domain.model.Staff;
+import com.example.test.infrastructure.persistence.entity.StaffEntity;
+import com.example.test.infrastructure.persistence.repo.jpa.StaffRepo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,21 +18,23 @@ public class StaffController {
     private final StaffService staffService;
     private final UpdateStaffUseCase updateStaffUseCase;
     private final DeleteStaffUseCase deleteStaffUseCase;
+    private final StaffRepo staffRepo;
 
-    public StaffController(StaffService staffService, UpdateStaffUseCase updateStaffUseCase, DeleteStaffUseCase deleteStaffUseCase) {
+    public StaffController(StaffService staffService, UpdateStaffUseCase updateStaffUseCase, DeleteStaffUseCase deleteStaffUseCase, StaffRepo staffRepo) {
         this.staffService = staffService;
         this.updateStaffUseCase = updateStaffUseCase;
         this.deleteStaffUseCase = deleteStaffUseCase;
+        this.staffRepo = staffRepo;
     }
 
     @PostMapping("/addStaff")
-    public Staff saveStaff(@RequestBody Staff staff){
-        return staffService.saveStaff(staff);
+    public StaffEntity saveStaff(@RequestBody StaffEntity staff){
+        return staffRepo.save(staff);
     }
 
     @GetMapping("/listStaffs")
-    public List<Staff> getListStaffs(){
-        return staffService.getListStaffs();
+    public List<StaffEntity> getListStaffs(){
+        return staffRepo.findAll();
     }
 
     @GetMapping("/{id}")

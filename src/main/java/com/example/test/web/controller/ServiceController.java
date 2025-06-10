@@ -31,13 +31,13 @@ public class ServiceController {
     }
 
     @PostMapping("/addService")
-    public void saveService(@RequestBody ServiceEntity service){
-         serviceRepository.save(service);
+    public ServiceEntity saveService(@RequestBody ServiceEntity service){
+         return serviceRepository.save(service);
     }
 
     @GetMapping("/listServices")
-    public List<Service> getListServices(){
-        return serviceService.getListServices();
+    public List<ServiceEntity> getListServices(){
+        return serviceRepository.findAll();
     }
 
     @GetMapping("/{id}")

@@ -24,7 +24,7 @@ public class ServiceEntity {
     private ClinicEntity clinic;
     private String name;
     private String Description;
-    @JsonIgnore
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<StaffEntity> staffList;
 }

@@ -18,7 +18,8 @@ import java.util.List;
 @Builder
 public class StaffEntity {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
     private String   prenom;
     private String role;
@@ -26,6 +27,7 @@ public class StaffEntity {
     private String telephone;
     private String   adresse;
     private LocalDate hireDate;
+
     @ManyToOne
     @JoinColumn(name = "service_id")
     private ServiceEntity service;
