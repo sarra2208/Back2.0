@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -39,9 +41,9 @@ public class AuthController {
                             authRequest.getUsername(), authRequest.getPassword()
                     )
             );
-
+            UserAppEntity userToConnect = userAppRepository.findByUsername(authRequest.getUsername()).get();
             String token = JwtUtil.generateToken(authRequest.getUsername());
-            return ResponseEntity.ok(new AuthResponse(token));
+            return ResponseEntity.ok(new AuthResponse(token,userToConnect));
         } catch (AuthenticationException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
