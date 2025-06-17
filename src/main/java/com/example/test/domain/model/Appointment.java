@@ -1,5 +1,6 @@
 package com.example.test.domain.model;
 
+import com.example.test.infrastructure.persistence.entity.StaffEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,11 +14,13 @@ import java.util.Date;
 @NoArgsConstructor
 public class Appointment {
  private Long id ;
- private Date date ;
+ private String date ;
  private String heure ;
  private String description;
  private String note ;
  private String state ;
+ private String staff;
+ private String patient;
 
 
 

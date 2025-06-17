@@ -16,9 +16,9 @@ import java.util.Date;
 @Builder
 public class AppointmentEntity {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private Date date ;
+    private String date ;
     private String heure ;
     private String description;
     private String note ;
@@ -27,8 +27,8 @@ public class AppointmentEntity {
     @JoinColumn(name = "staff_id")
     private StaffEntity staff;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "patient_id",nullable = true)
     private PatientEntity patient;
 
 

@@ -4,12 +4,17 @@ import com.example.test.domain.model.Appointment;
 
 
 import com.example.test.infrastructure.persistence.entity.AppointmentEntity;
-
+import com.example.test.infrastructure.persistence.repo.jpa.PatientRepo;
+import com.example.test.infrastructure.persistence.repo.jpa.StaffRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import static java.util.Objects.requireNonNull;
 
 public class AppointmentMapper {
+    private StaffRepo staffRepo;
+    private PatientRepo patientRepo;
+
     public static Appointment toDomain(AppointmentEntity appointmentEntity){
         requireNonNull(appointmentEntity, "appointment entity should not be null!");
         return Appointment.builder()
