@@ -4,6 +4,7 @@ import com.example.test.application.service.PatientService;
 import com.example.test.application.usecase.patient.DeletePatientUseCase;
 import com.example.test.application.usecase.patient.UpdatePatientUseCase;
 import com.example.test.domain.model.Patient;
+import com.example.test.infrastructure.persistence.entity.PrescriptionRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,16 @@ public class PatientController {
         this.updatePatientUseCase=updatePatientUseCase;
 
     }
-
+    @PostMapping("/sendPR")
+    public ResponseEntity<?> sendPrescription(@RequestBody PrescriptionRequest request) {
+        try {
+            patientService.sendPrescriptionEmail(request.getEmail(), request.getItems());
+            return ResponseEntity.ok().body("{\"success\":true}");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("{\"error\":\"Failed to send prescription email\"}");
+        }
+    }
     @PostMapping("/addPatient")
     public Patient savePatient(@RequestBody Patient patient){
         return patientService.savePatient(patient);
